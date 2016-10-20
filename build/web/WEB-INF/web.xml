@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <welcome-file-list>
+        <welcome-file>
+            Signin
+        </welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>admin.Login</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>List_Admin</servlet-name>
+        <servlet-class>admin.List_Admin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>List_Admin</servlet-name>
+        <url-pattern>/list_Admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Signin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>News</servlet-name>
+        <jsp-file>/WEB-INF/admin/views/create_News.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>News</servlet-name>
+        <url-pattern>/news</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Admin</servlet-name>
+        <jsp-file>/WEB-INF/admin/views/view_Admin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Support</servlet-name>
+        <jsp-file>/WEB-INF/admin/views/view_Supporter.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Support</servlet-name>
+        <url-pattern>/supporter</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Manager</servlet-name>
+        <jsp-file>/WEB-INF/admin/views/view_Manager.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Manager</servlet-name>
+        <url-pattern>/manager</url-pattern>
+    </servlet-mapping>
+    <!--    <filter>
+        <filter-name>Frist Filter</filter-name>
+        <filter-class>filter.FristFilter</filter-class>
+    </filter>-->
+    <!--    <filter-mapping>
+        <filter-name>Frist Filter</filter-name>
+        <servlet-name>Login</servlet-name>
+    </filter-mapping>-->
+    <!--    <filter-mapping>
+        <filter-name>Frist Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+    <servlet-mapping>
+        <servlet-name>List_Admin</servlet-name>
+        <url-pattern>/List_Admin</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
