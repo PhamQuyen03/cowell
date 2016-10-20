@@ -366,9 +366,9 @@
                             <div class="panel-body" style="align-content: center; margin-left: auto; margin-right: auto">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#home" data-toggle="tab">Create User</a>
+                                    <li class="active"><a href="#home" data-toggle="tab">User</a>
                                     </li>
-                                    <li><a href="#profile" data-toggle="tab">User</a>
+                                    <li><a href="#profile" data-toggle="tab">Create User</a>
                                     </li>
                                     <li><a href="#messages" data-toggle="tab">Posts waited</a>
                                     </li>
@@ -379,15 +379,50 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content" style="min-height: 600px; padding-top: 40px">
                                     <div class="tab-pane fade in active" id="home" style="min-width: 800px;">
-                                        <form method="post" action="">
+                                        <div class="panel-body">
+                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>User Name</th>
+                                                            <th>Password</th>
+                                                            <th>Role</th>
+                                                            <th>Detail</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                                    <c:forEach items="${requestScope.users}" var="user">
+                                                        <tr class="odd gradeX">
+                                                        <td><c:out value="${user.name}"/> </td>
+                                                        <td><c:out value="${user.password}"/> </td>
+                                                        <td><c:out value="${user.role}"/> </td>
+                                                        <td class="center">X</td>
+                                                        <td class="center">X</td>
+                                                        <td class="center">X</td>
+                                                        </tr>
+                                                    </c:forEach>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        
+                                    </div>
+                                    <div class="tab-pane fade" id="profile">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3>Post</h3>
+                                            </div>
+                                            <form method="post" action="./Create_User">
                                             <!--<textarea id="myTextarea" style="float: right;position: absolute;"></textarea>-->
                                             <div class="form-group">
                                                 <label>Usermane</label>
-                                                <input class="form-control" placeholder="Enter Username">
+                                                <input class="form-control" name="Usermane_create" placeholder="Enter Username">
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input class="form-control" placeholder="Enter Password">
+                                                <input class="form-control" name="Password_create" placeholder="Enter Password">
                                             </div>
                                             <div style="">
                                                 <label>Role</label> : 
@@ -400,9 +435,9 @@
                                             <br><br>
                                             <input type="submit" value="Submit"/>
                                         </form>
-
+                                        </div>
                                     </div>
-                                    <div class="tab-pane fade" id="profile">
+                                    <div class="tab-pane fade" id="messages">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h3>Post</h3>
@@ -428,41 +463,6 @@
                                                             <td class="center">X</td>
                                                             <td style="align-content: center;">X</td>
                                                         </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="messages">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3>Post</h3>
-                                            </div>
-                                            <div class="panel-body">
-                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>User Name</th>
-                                                            <th>Password</th>
-                                                            <th>Role</th>
-                                                            <th>Detail</th>
-                                                            <th>Edit</th>
-                                                            <th>Delete</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        
-                                                    <c:forEach items="${requestScope.users}" var="user">
-                                                        <tr class="odd gradeX">
-                                                        <td><c:out value="${user.name}"/> </td>
-                                                        <td><c:out value="${user.password}"/> </td>
-                                                        <td><c:out value="${user.role}"/> </td>
-                                                        <td class="center">X</td>
-                                                        <td class="center">X</td>
-                                                        <td class="center">X</td>
-                                                        </tr>
-                                                    </c:forEach>
-
                                                     </tbody>
                                                 </table>
                                             </div>

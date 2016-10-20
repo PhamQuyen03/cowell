@@ -23,7 +23,7 @@ public class Test {
         try {
             Connection Con = ConnectDB.Connected();
             Statement stmt = Con.createStatement();
-            ResultSet rs = stmt.executeQuery( "INSERT INTO USERS " +"VALUES ('QUYEN11', '123', 1)");
+            stmt.executeQuery( "INSERT INTO USERS " +"VALUES ('QUYEN11', '123', 1)");
             
 //            List<User> users = new ArrayList<>();
 //            while (rs.next()) {
