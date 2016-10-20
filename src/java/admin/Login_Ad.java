@@ -25,7 +25,7 @@ import model.User;
  *
  * @author tuong
  */
-public class Login extends HttpServlet {
+public class Login_Ad extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,36 +38,45 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=UTF-8");
+        String email = request.getParameter("emailAD");
+        String password = request.getParameter("passwordAD");
+        User user = new User();
         try {
-            response.setContentType("text/html;charset=UTF-8");
-            String name = request.getParameter("username");
-            String pass = request.getParameter("password");
             Connection Con = ConnectDB.Connected();
-            String sql = "select * from USERS where usr_name='" + name + "' and usr_password='" + pass + "'";
+            String sql = "select * from USERS where usr_name='" + email + "' and usr_password='" + password + "'";
             Statement stt = Con.createStatement();
-
             ResultSet rs = stt.executeQuery(sql);
+            while (rs.next()) {
+                String name = rs.getString("USR_NAME");
+                String pass = rs.getString("USR_PASSWORD");
+                int role = rs.getInt("ROLE");
+                user.setName(name);
+                user.setPassword(pass);
+                user.setRole(role);
+            }
             Con.close();
             RequestDispatcher path = null;
-
-            User users = new User(name, pass, 1);
-            if ("".equals(name) || "".equals(pass) || name == null || pass == null) {
-                path = request.getRequestDispatcher("/WEB-INF/admin/views/Login.jsp");
-            } else if (rs != null) {
-                path = request.getRequestDispatcher("/WEB-INF/admin/views/create_News.jsp");
-                response.sendRedirect("news");
-                return;
-//                request.getSession().setAttribute("model.user", users);
-            } else {
-                path = request.getRequestDispatcher("/Login.jsp");
+            if(email == null | password == null | "".equals(email) | "".equals(password)) {
+                path = request.getRequestDispatcher("/WEB-INF/admin/views/login_Admin.jsp");
+                path.forward(request, response);
+            } else if(user != null) {
+                request.getSession().setAttribute("userSession", user);
+                
+                if(user.getRole() == 1) {
+                    response.sendRedirect("admin");
+                } else if(user.getRole() == 2) {
+                    response.sendRedirect("manager");
+                } else {
+                    response.sendRedirect("supporter");
+                }
             }
             
-            path.include(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Login_Ad.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
