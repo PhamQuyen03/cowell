@@ -17,6 +17,7 @@
         <servlet-name>List_Admin</servlet-name>
         <url-pattern>/list_Admin</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Signin</url-pattern>
@@ -52,6 +53,14 @@
     <servlet-mapping>
         <servlet-name>Manager</servlet-name>
         <url-pattern>/manager</url-pattern>
+    </servlet-mapping>
+        <servlet>
+        <servlet-name>LoginAD</servlet-name>
+        <jsp-file>/WEB-INF/admin/views/login_Admin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginAD</servlet-name>
+        <url-pattern>/AdminLogin</url-pattern>
     </servlet-mapping>
     <!--    <filter>
         <filter-name>Frist Filter</filter-name>

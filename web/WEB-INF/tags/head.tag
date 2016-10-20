@@ -18,13 +18,11 @@
 
 <!-- Bootstrap Core CSS -->
 <link href="resource/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- MetisMenu CSS -->
 <link href="resource/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="resource/dist/css/sb-admin-2.css" rel="stylesheet">
-
 <!-- Custom Fonts -->
 <link href="resource/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 

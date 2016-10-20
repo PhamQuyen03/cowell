@@ -14,7 +14,6 @@
     <jsp:doBody></jsp:doBody>
             <!-- jQuery -->
         <script src="resource/vendor/jquery/jquery.min.js"></script>
-
         <!-- Bootstrap Core JavaScript -->
         <script src="resource/vendor/bootstrap/js/bootstrap.min.js"></script>
 
