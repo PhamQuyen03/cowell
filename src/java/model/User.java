@@ -13,6 +13,15 @@ public class User {
     private String name;
     private String password;
     private  int role;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getRole() {
         return role;
@@ -24,10 +33,12 @@ public class User {
     public User() {
         
     }
-    public User(String name, String password, int role) {
+    public User(int id, String name, String password, int role) {
+        this.id = id;
         this.name = name;
         this.password = password;
         this.role = role;
+        
     }
 
     public String getName() {

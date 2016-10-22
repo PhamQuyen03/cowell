@@ -42,7 +42,8 @@ public class Create_User extends HttpServlet {
             Connection con = ConnectDB.Connected();
             Statement stt = con.createStatement();
             String sql = "INSERT INTO USERS " +"VALUES ('"+ userName +"', '" + password + "', "+ role +")";
-            stt.executeQuery(sql);
+            stt.executeUpdate(sql);
+            
             con.close();
             response.sendRedirect("admin");
         } catch (ClassNotFoundException ex) {

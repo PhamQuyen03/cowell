@@ -7,6 +7,7 @@ package admin;
 
 import dao.ConnectDB;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -20,10 +21,19 @@ import model.User;
 public class Test {
 
     public static void main(String[] args) {
-        try {
-            Connection Con = ConnectDB.Connected();
-            Statement stmt = Con.createStatement();
-            stmt.executeQuery( "INSERT INTO USERS " +"VALUES ('QUYEN11', '123', 1)");
+        
+        String date = "1900-1-29";
+        String d[] = date.split("-");
+        for(int i = 0; i < d.length; i++) {
+            System.out.println(d[i]);
+        }
+        System.out.println(Integer.parseInt(d[0]));
+        Date date1 = new Date(Integer.parseInt(d[0])-1900, Integer.parseInt(d[1])-1, Integer.parseInt(d[2]));
+            System.out.println(date1.toString());
+//        try {
+//            Connection Con = ConnectDB.Connected();
+//            Statement stmt = Con.createStatement();
+//            stmt.executeQuery( "INSERT INTO USERS " +"VALUES ('QUYEN11', '123', 1)");
             
 //            List<User> users = new ArrayList<>();
 //            while (rs.next()) {
@@ -37,10 +47,10 @@ public class Test {
 //            for(User use : users){
 //                System.out.println(use.getName());
 //            }
-            Con.close();
-        } catch (Exception e) {
-            System.err.println("Got an exception! ");
-            System.err.println(e.getMessage());
-        }
+//            Con.close();
+//        } catch (Exception e) {
+//            System.err.println("Got an exception! ");
+//            System.err.println(e.getMessage());
+//        }
     }
 }

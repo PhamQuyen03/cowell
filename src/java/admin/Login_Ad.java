@@ -64,12 +64,16 @@ public class Login_Ad extends HttpServlet {
             } else if(user != null) {
                 request.getSession().setAttribute("userSession", user);
                 
-                if(user.getRole() == 1) {
-                    response.sendRedirect("admin");
-                } else if(user.getRole() == 2) {
-                    response.sendRedirect("manager");
-                } else {
-                    response.sendRedirect("supporter");
+                switch (user.getRole()) {
+                    case 1:
+                        response.sendRedirect("admin");
+                        break;
+                    case 2:
+                        response.sendRedirect("manager");
+                        break;
+                    default:
+                        response.sendRedirect("supporter");
+                        break;
                 }
             }
             

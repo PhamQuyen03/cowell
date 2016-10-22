@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
             Con.close();
             RequestDispatcher path = null;
 
-            User users = new User(name, pass, 1);
+            User users = new User(1, name, pass, 1);
             if ("".equals(name) || "".equals(pass) || name == null || pass == null) {
                 path = request.getRequestDispatcher("/WEB-INF/admin/views/Login.jsp");
             } else if (rs != null) {

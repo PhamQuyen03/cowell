@@ -7,6 +7,7 @@ package admin;
 
 import dao.ConnectDB;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ import model.User;
  *
  * @author tuong
  */
-public class List_Admin extends HttpServlet {
+public class Edit_User extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,26 +39,9 @@ public class List_Admin extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Connection Con = ConnectDB.Connected();
-        Statement stmt = Con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM USERS ORDER BY ID DESC");
-        List<User> users = new ArrayList<>();
-        while (rs.next()) {
-            String name = rs.getString("USR_NAME");
-            String pass = rs.getString("USR_PASSWORD");
-            int role = rs.getInt("ROLE");
-            int id = rs.getInt("ID");
-            User user = new User(id, name, pass, role);
-            users.add(user);
-            
-        }
-        request.setAttribute("users", users);
-        RequestDispatcher path = request.getRequestDispatcher("/WEB-INF/admin/views/view_Admin.jsp");
-        path.forward(request, response);
-        Con.close();
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,13 +56,29 @@ public class List_Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        User user = new User();
         try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(List_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Connection Con = ConnectDB.Connected();
+            Statement stmt = Con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM USERS WHERE ID = " + id);
+            while (rs.next()) {
+                String name = rs.getString("USR_NAME");
+                String pass = rs.getString("USR_PASSWORD");
+                int role = rs.getInt("ROLE");
+                user = new User(id, name, pass, role);
+            }
+            Con.close();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(List_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        request.setAttribute("edit_user", user);
+        RequestDispatcher patcher = request.getRequestDispatcher("/WEB-INF/admin/views/Edit_User.jsp");
+        patcher.forward(request, response);
     }
 
     /**
@@ -92,13 +92,22 @@ public class List_Admin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("userid"));
+       
+        String name = request.getParameter("Username_edit");
+        String pass = request.getParameter("Password_edit");
+        int role = Integer.parseInt(request.getParameter("Role_edit"));
         try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(List_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Connection Con = ConnectDB.Connected();
+            Statement stmt = Con.createStatement();
+            int rs = stmt.executeUpdate("UPDATE USERS " +"SET USR_NAME = N'" +name +"', USR_PASSWORD = N'"+ pass+"', ROLE = "+ role +" WHERE ID = "+ id);
+            Con.close();
+            response.sendRedirect("/quyen/admin");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(List_Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

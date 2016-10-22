@@ -22,7 +22,7 @@ import model.User;
  * @author tuong
  */
 public class AdLoginFilter implements Filter {
-
+    
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -30,6 +30,7 @@ public class AdLoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest rq = (HttpServletRequest) request;
+        request.setCharacterEncoding("utf-8");
         String path = (rq.getRequestURI());
         if (path.startsWith("/quyen/resource") || path.startsWith("/resource")) {
             chain.doFilter(request, response);

@@ -5,7 +5,9 @@
 --%>
 
 <!DOCTYPE html>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page pageEncoding="UTF-8" language="java" import="java.sql.*"%>
+<%@page contentType="text/html;charset=UTF-8"%>
 <%@taglib  prefix="co" tagdir="/WEB-INF/tags" %>
 <co:layout>
     <div id="wrapper">
@@ -371,14 +373,22 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content" style="min-height: 600px; padding-top: 40px">
                                     <div class="tab-pane fade in active" id="home" style="min-width: 800px;">
-                                        <form method="post" action="">
-                                            <textarea id="myTextarea" style="float: right;position: absolute;"></textarea>
-                                            <br><br>
+                                        <form method="post" action="./Create_News">
+                                            <div class="form-group">
+                                                <label for="Header">Header</label><br>
+                                                <textarea class="form-control" name="header_create" rows="3" style="width: 600px"></textarea>
+                                            </div><br>
+                                            <textarea id="myTextarea" name="textArea">hello</textarea>
+                                            <br>
+                                            <div class="form-group">
+                                                <label style="font-size:  15pt; align-content: center;">Author</label>
+                                                <input class="form-control" name="author" type="text" style="text-align: center;font-size: 15pt;width: 200px">
+                                            </div><br>
                                             <div style="">
-                                                <label>Ngay bat dau</label> : <input type="date" /><br><br>
-                                                <label>Ngay ket thuc</label>: <input type="date"/><br><br>
+                                                <label>Ngay bat dau</label> : <input type="date" name="dateStart"/><br><br>
+                                                <label>Ngay ket thuc</label>: <input type="date" name="dateEnd"/><br><br>
                                                 <label>Role</label> : 
-                                                <select name="Role">
+                                                <select name="Role_CreateNews">
                                                     <option value="1">Communication</option>
                                                     <option value="2">Recruitment</option>
                                                     <option value="3">News</option>
@@ -398,23 +408,30 @@
                                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <thead>
                                                         <tr>
-                                                            <th>User Name</th>
-                                                            <th>Password</th>
-                                                            <th>Role</th>
-                                                            <th>Detail</th>
+                                                            <th>Id</th>
+                                                            <th>Header</th>
+                                                            <th>Content</th>
+                                                            <th>Author</th>
+                                                            <th>DateStart</th>
+                                                            <th>DateEnd</th>
+                                                            <th>Status</th>
                                                             <th>Edit</th>
-                                                            <th>Delete</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr class="odd gradeX">
-                                                            <td>Trident</td>
-                                                            <td>Internet Explorer 4.0</td>
-                                                            <td>Win 95+</td>
-                                                            <td class="center">X</td>
-                                                            <td class="center">X</td>
-                                                            <td style="align-content: center;">X</td>
-                                                        </tr>
+                                                        <c:forEach items="${requestScope.news}" var="ns">
+                                                            <tr class="odd gradeX">
+                                                                <td><c:out value="${ns.id}"/></td>
+                                                                <td><c:out value="${ns.header}"/></td>
+                                                                <td><c:out escapeXml="false" value="${ns.content}"/></td>
+                                                                <td><c:out value="${ns.author}"/></td>
+                                                                <td><c:out value="${ns.dateStart}"/></td>
+                                                                <td><c:out value="${ns.dateEnd}"/></td>
+                                                                <td><c:out value="${ns.status}"/></td>
+                                                                <td><a href="Edit_News?id=<c:out value="${ns.id}"/>">Edit</a></td>
+                                                            </tr>
+                                                        </c:forEach>
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -464,50 +481,7 @@
                     <!-- /.panel -->
                 </div>
             </div>
-            <!-- /.row -->
-            <!--                <div class="panel-body">
-                                <p>
-                                    <button type="button" class="btn btn-default">Default</button>
-                                    <button type="button" class="btn btn-primary">Primary</button>
-                                    <button type="button" class="btn btn-success">Success</button>
-                                </p>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3>Post</h3>
-                                        </div>
-                                         /.panel-heading 
-                                        <div class="panel-body">
-                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                <thead>
-                                                    <tr>
-                                                        <th>User Name</th>
-                                                        <th>Password</th>
-                                                        <th>Role</th>
-                                                        <th>Detail</th>
-                                                        <th>Edit</th>
-                                                        <th>Delete</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="odd gradeX">
-                                                        <td>Trident</td>
-                                                        <td>Internet Explorer 4.0</td>
-                                                        <td>Win 95+</td>
-                                                        <td class="center">X</td>
-                                                        <td class="center">X</td>
-                                                        <td style="align-content: center;">X</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                         /.container-fluid 
-                                    </div>
-                                     /#page-wrapper 
-                                </div>
-                            </div>-->
+
         </div>
         <!-- /.container-fluid -->
     </div>

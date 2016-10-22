@@ -380,34 +380,36 @@
                                 <div class="tab-content" style="min-height: 600px; padding-top: 40px">
                                     <div class="tab-pane fade in active" id="home" style="min-width: 800px;">
                                         <div class="panel-body">
-                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>User Name</th>
-                                                            <th>Password</th>
-                                                            <th>Role</th>
-                                                            <th>Detail</th>
-                                                            <th>Edit</th>
-                                                            <th>Delete</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        
+                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>User Name</th>
+                                                        <th>Password</th>
+                                                        <th>Role</th>
+                                                        <th>Id</th>
+                                                        <th>Detail</th>
+                                                        <th>Edit</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
                                                     <c:forEach items="${requestScope.users}" var="user">
                                                         <tr class="odd gradeX">
-                                                        <td><c:out value="${user.name}"/> </td>
-                                                        <td><c:out value="${user.password}"/> </td>
-                                                        <td><c:out value="${user.role}"/> </td>
-                                                        <td class="center">X</td>
-                                                        <td class="center">X</td>
-                                                        <td class="center">X</td>
+                                                            <td><c:out value="${user.name}"/></td>
+                                                            <td><c:out value="${user.password}"/> </td>
+                                                            <td><c:out value="${user.role}"/> </td>
+                                                            <td><c:out value="${user.id}"/> </td>
+                                                            <td class="center">X</td>
+                                                            <td class="center"><a href="Edit_User?id=<c:out value="${user.id}"/>">Edit</a></td>
+                                                            <td class="center">X</td>
                                                         </tr>
                                                     </c:forEach>
 
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </div>
                                     <div class="tab-pane fade" id="profile">
                                         <div class="panel panel-default">
@@ -415,26 +417,26 @@
                                                 <h3>Post</h3>
                                             </div>
                                             <form method="post" action="./Create_User">
-                                            <!--<textarea id="myTextarea" style="float: right;position: absolute;"></textarea>-->
-                                            <div class="form-group">
-                                                <label>Usermane</label>
-                                                <input class="form-control" name="Usermane_create" placeholder="Enter Username">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                <input class="form-control" name="Password_create" placeholder="Enter Password">
-                                            </div>
-                                            <div style="">
-                                                <label>Role</label> : 
-                                                <select name="Role">
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Manager</option>
-                                                    <option value="3">Support</option>
-                                                </select><br>
-                                            </div>
-                                            <br><br>
-                                            <input type="submit" value="Submit"/>
-                                        </form>
+                                                <!--<textarea id="myTextarea" style="float: right;position: absolute;"></textarea>-->
+                                                <div class="form-group">
+                                                    <label>Usermane</label>
+                                                    <input class="form-control" name="Usermane_create" placeholder="Enter Username">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input class="form-control" name="Password_create" placeholder="Enter Password">
+                                                </div>
+                                                <div style="">
+                                                    <label>Role</label> : 
+                                                    <select name="Role">
+                                                        <option value="1">Admin</option>
+                                                        <option value="2">Manager</option>
+                                                        <option value="3">Support</option>
+                                                    </select><br>
+                                                </div>
+                                                <br><br>
+                                                <input type="submit" value="Submit"/>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="messages">

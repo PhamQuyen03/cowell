@@ -8,25 +8,21 @@ package admin;
 import dao.ConnectDB;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
 
 /**
  *
  * @author tuong
  */
-public class List_Admin extends HttpServlet {
+public class Create_News extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,26 +34,32 @@ public class List_Admin extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Connection Con = ConnectDB.Connected();
-        Statement stmt = Con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM USERS ORDER BY ID DESC");
-        List<User> users = new ArrayList<>();
-        while (rs.next()) {
-            String name = rs.getString("USR_NAME");
-            String pass = rs.getString("USR_PASSWORD");
-            int role = rs.getInt("ROLE");
-            int id = rs.getInt("ID");
-            User user = new User(id, name, pass, role);
-            users.add(user);
-            
-        }
-        request.setAttribute("users", users);
-        RequestDispatcher path = request.getRequestDispatcher("/WEB-INF/admin/views/view_Admin.jsp");
-        path.forward(request, response);
-        Con.close();
+        request.setCharacterEncoding("UTF-8");
+        String header = request.getParameter("header_create");
+        String textArea = request.getParameter("textArea");
+        String author = request.getParameter("author");
+        String dateS = request.getParameter("dateStart");
+        String date1[] = dateS.split("-");
+        Date dateStart = new Date(Integer.parseInt(date1[0]) - 1900, Integer.parseInt(date1[1]) - 1, Integer.parseInt(date1[2]));
+        String dateE = request.getParameter("dateEnd");
+        String date2[] = dateE.split("-");
+        Date dateEnd = new Date(Integer.parseInt(date2[0]) - 1900, Integer.parseInt(date2[1]) - 1, Integer.parseInt(date2[2]));
+        int Status = Integer.parseInt(request.getParameter("Role_CreateNews"));
 
+        try {
+            Connection con = ConnectDB.Connected();
+            Statement stt = con.createStatement();
+            String sql = "INSERT INTO NEWS " + "VALUES (N'" + header + "', N'" + textArea + "', N'" + author + "', '" + dateStart + "', '" + dateEnd + "', " + Status + ")";
+            stt.executeUpdate(sql);
+            con.close();
+            response.sendRedirect("supporter");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Create_News.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Create_News.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,13 +74,7 @@ public class List_Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(List_Admin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(List_Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -92,14 +88,7 @@ public class List_Admin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(List_Admin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(List_Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

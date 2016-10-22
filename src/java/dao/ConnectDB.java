@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author tuong
  */
 public class ConnectDB {
-    static String StrCon= "jdbc:sqlserver://DESKTOP-QKRBMNH\\SQLEXPRESS:1433;" + "databaseName=Quyen;user=quyen;password=123";
+    static String StrCon= "jdbc:sqlserver://DESKTOP-QKRBMNH\\SQLEXPRESS:1433;" + "databaseName=Quyen;user=quyen;password=123;useUnicode=true;characterEncoding=UTF-8";
 //    static String StrCon= "jdbc:sqlserver://localhost;integratedSecurity=true;" + "databaseName=Quyen;user=quyen;password=123";
     //jdbc:sqlserver://localhost;integratedSecurity=true
     

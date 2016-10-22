@@ -4,12 +4,10 @@
     Author     : tuong
 --%>
 
-<!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page pageEncoding="UTF-8" language="java" import="java.sql.*"%>
-<%@page contentType="text/html;charset=UTF-8"%>
-<%@taglib  prefix="co" tagdir="/WEB-INF/tags" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix="co" tagdir="/WEB-INF/tags/" %>
 <co:layout>
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -348,147 +346,43 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Supporter Manage</h1>
+                        <h1 class="page-header">News Create</h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Basic Tabs
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body" style="align-content: center; margin-left: auto; margin-right: auto">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#home" data-toggle="tab">Create News</a>
-                                    </li>
-                                    <li><a href="#profile" data-toggle="tab">Posted</a>
-                                    </li>
-                                    <li><a href="#messages" data-toggle="tab">Posts waited</a>
-                                    </li>
-                                    <li><a href="#settings" data-toggle="tab">Settings</a>
-                                    </li>
-                                </ul>
-
-                                <!-- Tab panes -->
-                                <div class="tab-content" style="min-height: 600px; padding-top: 40px">
-                                    <div class="tab-pane fade in active" id="home" style="min-width: 800px;">
-                                        <form method="post" action="./Create_News">
-                                            <div class="form-group">
-                                                <label for="Header">Header</label><br>
-                                                <textarea class="form-control" name="header_create" rows="3" style="width: 600px"></textarea>
-                                            </div><br>
-                                            <textarea id="myTextarea" name="textArea">hello</textarea>
-                                            <br>
-                                            <div class="form-group">
-                                                <label style="font-size:  15pt; align-content: center;">Author</label>
-                                                <input class="form-control" name="author" type="text" style="text-align: center;font-size: 15pt;width: 200px">
-                                            </div><br>
-                                            <div style="">
-                                                <label>Ngay bat dau</label> : <input type="date" name="dateStart"/><br><br>
-                                                <label>Ngay ket thuc</label>: <input type="date" name="dateEnd"/><br><br>
-                                                <label>Role</label> : 
-                                                <select name="Role_CreateNews">
-                                                    <option value="1">Communication</option>
-                                                    <option value="2">Recruitment</option>
-                                                    <option value="3">News</option>
-                                                </select><br>
-                                            </div>
-                                            <br><br>
-                                            <input type="submit" value="Submit"/>
-                                        </form>
-
-                                    </div>
-                                    <div class="tab-pane fade" id="profile">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3>Post</h3>
-                                            </div>
-                                            <div class="panel-body">
-                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Id</th>
-                                                            <th>Header</th>
-                                                            <th>Content</th>
-                                                            <th>Author</th>
-                                                            <th>DateStart</th>
-                                                            <th>DateEnd</th>
-                                                            <th>Status</th>
-                                                            <th>Edit</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach items="${requestScope.news}" var="ns">
-                                                            <tr class="odd gradeX">
-                                                                <td><c:out value="${ns.id}"/></td>
-                                                                <td><c:out value="${ns.header}"/></td>
-                                                                <td><c:out escapeXml="false" value="${ns.content}"/></td>
-                                                                <td><c:out value="${ns.author}"/></td>
-                                                                <td><c:out value="${ns.dateStart}"/></td>
-                                                                <td><c:out value="${ns.dateEnd}"/></td>
-                                                                <td><c:out value="${ns.status}"/></td>
-                                                                <td><a href="Edit_News?id=<c:out value="${ns.id}"/>">Edit</a></td>
-                                                            </tr>
-                                                        </c:forEach>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="messages">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3>Post</h3>
-                                            </div>
-                                            <div class="panel-body">
-                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>User Name</th>
-                                                            <th>Password</th>
-                                                            <th>Role</th>
-                                                            <th>Detail</th>
-                                                            <th>Edit</th>
-                                                            <th>Delete</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="odd gradeX">
-                                                            <td>Trident</td>
-                                                            <td>Internet Explorer 4.0</td>
-                                                            <td>Win 95+</td>
-                                                            <td class="center">X</td>
-                                                            <td class="center">X</td>
-                                                            <td style="align-content: center;">X</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="settings">
-                                        <h4>Settings Tab</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.panel -->
                 </div>
+                <!-- /.row -->
+                <form method="post" action="./Edit_User/*">
+
+                    <!--<div class="form-group" hidden="true">-->
+                        
+                        <input class="form-control" id="disabledInput" name="userid" value="${requestScope.edit_user.id}" hidden="true">
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" name="Username_edit" placeholder="Enter Username" value="${requestScope.edit_user.name}">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input class="form-control" name="Password_edit" placeholder="Enter Password" value="${requestScope.edit_user.password}">
+                    </div>
+                    <div style="">
+                        <label>Role</label> : 
+                        <select name="Role_edit">
+                            <option value="1">Admin</option>
+                            <option value="2">Manager</option>
+                            <option value="3">Support</option>
+                        </select><br>
+                    </div>
+                    <br><br>
+                    <input type="submit" value="Submit"/>
+                </form>
+                <!--<div id="froala-editor"></div>-->
             </div>
-
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /#page-wrapper -->
+
     </div>
-    <!-- /#page-wrapper -->
-
     <!-- /#wrapper -->
-
-
 
 </co:layout>

@@ -46,7 +46,8 @@ public class UserDB {
                 String name = rs.getString("USR_NAME");
                 String pass = rs.getString("USR_PASSWORD");
                 int role = rs.getInt("ROLE");
-                User user = new User(name, pass, role);
+                int id = rs.getInt("ID");
+                User user = new User(id, name, pass, role);
                 users.add(user);
             }
             con.close();

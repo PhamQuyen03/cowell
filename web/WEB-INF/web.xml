@@ -9,6 +9,22 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>admin.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Edit_User</servlet-name>
+        <servlet-class>admin.Edit_User</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Create_News</servlet-name>
+        <servlet-class>admin.Create_News</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowUser</servlet-name>
+        <servlet-class>/WEB-INF/admin/views/view_Supporter.jsp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Edit_News</servlet-name>
+        <servlet-class>admin.Edit_News</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Signin</url-pattern>
@@ -47,7 +63,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Support</servlet-name>
-        <jsp-file>/WEB-INF/admin/views/view_Supporter.jsp</jsp-file>
+        <servlet-class>admin.ShowNews</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Support</servlet-name>
@@ -77,7 +93,35 @@
         <filter-name>Frist Filter</filter-name>
         <servlet-name>Login</servlet-name>
     </filter-mapping>-->
-    
+<!--    <filter>
+        <filter-name>setCharacterEncodingFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter-mapping>
+        <filter-name>setCharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+    <servlet-mapping>
+        <servlet-name>Edit_User</servlet-name>
+        <url-pattern>/Edit_User/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Create_News</servlet-name>
+        <url-pattern>/Create_News</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowUser</servlet-name>
+        <url-pattern>/ShowUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Edit_News</servlet-name>
+        <url-pattern>/Edit_News/*</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
