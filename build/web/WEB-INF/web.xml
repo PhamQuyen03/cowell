@@ -25,6 +25,10 @@
         <servlet-name>Edit_News</servlet-name>
         <servlet-class>admin.Edit_News</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <servlet-class>clients.index</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Signin</url-pattern>
@@ -93,7 +97,7 @@
         <filter-name>Frist Filter</filter-name>
         <servlet-name>Login</servlet-name>
     </filter-mapping>-->
-<!--    <filter>
+    <!--    <filter>
         <filter-name>setCharacterEncodingFilter</filter-name>
         <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
         <init-param>
@@ -121,6 +125,10 @@
     <servlet-mapping>
         <servlet-name>Edit_News</servlet-name>
         <url-pattern>/Edit_News/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
