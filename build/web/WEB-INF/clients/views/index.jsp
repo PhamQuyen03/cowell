@@ -4,45 +4,50 @@
     Author     : tuong
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="co-well" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="co-well" tagdir="/WEB-INF/tags/clients" %>
 <co-well:layout>
-    <!--    <h1>TinyMCE Quick Start Guide</h1>
-        <form method="post">
-            <textarea id="myTextarea">
-            </textarea>
-        </form>-->
-    <!--aaa-->
+
     <section class="hightlight region">
         <div class="banner">
             <div class="wauto">
                 <div class="swiper-container swiper-container-horizontal">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide mrow slide3 swiper-slide-duplicate" data-swiper-slide-index="2">
-                            <a href="services/outsourcing" title="Outsourcing">
-                                <img src="resource/clients/images/pc20160616_150621.png" alt=""/>
-                            </a>
-                        </div>
-                        <div class="swiper-slide mrow slide1" data-swiper-slide-index="0">
-                            <a href="services/consulting" title="Tư vấn chiến lược CNTT">
-                                <img src="resource/clients/images/pc20160615_163914.png" alt="Tư vấn chiến lược CNTT">
-                            </a>
-                        </div>
-                        <div class="swiper-slide mrow slide2 swiper-slide-prev" data-swiper-slide-index="1">
-                            <a href="services/system-integration" title="Tích hợp hệ thống">
-                                <img src="resource/clients/images/pc20160616_150533.png" alt="Tích hợp hệ thống">
-                            </a>
-                        </div>
-                        <div class="swiper-slide mrow slide3 swiper-slide-active" data-swiper-slide-index="2">
-                            <a href="services/outsourcing" title="Outsourcing                  ">
-                                <img src="resource/clients/images/pc20160616_150621.png" alt=""/>
-                            </a>
-                        </div>
-                        <div class="swiper-slide mrow slide1 swiper-slide-duplicate swiper-slide-next" data-swiper-slide-index="0">
-                            <a href="services/consulting" title="Tư vấn chiến lược CNTT">
-                                <img src="resource/clients/images/pc20160615_163914.png" alt="Tư vấn chiến lược CNTT">
-                            </a>
-                        </div>
+                        <c:forEach items="${requestScope.img_slide}" var="img">
+                            
+                            <div class=<c:out value="${img.stringClass}"></c:out> <c:out value="${img.data}"></c:out> >
+                                <a href="services/outsourcing" title="Outsourcing">
+                                    <img src=<c:out value="${img.src}"></c:out> alt=""/>
+                                </a>
+                            </div>
+                        </c:forEach>
+                        <!--                        <div class="swiper-slide mrow slide3 swiper-slide-duplicate" data-swiper-slide-index="2">
+                                                    <a href="services/outsourcing" title="Outsourcing">
+                                                        <img src="resource/clients/images/pc20160616_150621.png" alt=""/>
+                                                    </a>
+                                                </div>
+                                                <div class="swiper-slide mrow slide1" data-swiper-slide-index="0">
+                                                    <a href="services/consulting" title="Tư vấn chiến lược CNTT">
+                                                        <img src="resource/clients/images/pc20160615_163914.png" alt="Tư vấn chiến lược CNTT">
+                                                    </a>
+                                                </div>
+                                                <div class="swiper-slide mrow slide2 swiper-slide-prev" data-swiper-slide-index="1">
+                                                    <a href="services/system-integration" title="Tích hợp hệ thống">
+                                                        <img src="resource/clients/images/pc20160616_150533.png" alt="Tích hợp hệ thống">
+                                                    </a>
+                                                </div>
+                                                <div class="swiper-slide mrow slide3 swiper-slide-active" data-swiper-slide-index="2">
+                                                    <a href="services/outsourcing" title="Outsourcing                  ">
+                                                        <img src="resource/clients/images/pc20160616_150621.png" alt=""/>
+                                                    </a>
+                                                </div>
+                                                <div class="swiper-slide mrow slide1 swiper-slide-duplicate swiper-slide-next" data-swiper-slide-index="0">
+                                                    <a href="services/consulting" title="Tư vấn chiến lược CNTT">
+                                                        <img src="resource/clients/images/pc20160615_163914.png" alt="Tư vấn chiến lược CNTT">
+                                                    </a>
+                                                </div>-->
                     </div>
                     <div class="swiper-pagination swiper-pagination-clickable"><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
                 </div>

@@ -111,6 +111,7 @@ public class Edit_News extends HttpServlet {
             String update = "UPDATE News " + "SET HEADER = N'" + header + "', CONTENTS = N'" + textArea + "', AUTHOR = N'" + author + "', DATE_START = '"+dateStart+ "', DATE_END = '"+dateEnd+"', STATUS = "+ status + "WHERE ID = " + id;
             stt.executeUpdate(update);
             con.createStatement();
+            con.close();
             response.sendRedirect("/quyen/supporter");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Edit_News.class.getName()).log(Level.SEVERE, null, ex);
